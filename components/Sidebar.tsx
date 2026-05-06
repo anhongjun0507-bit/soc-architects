@@ -11,7 +11,7 @@ export function Sidebar({
   dict: Dictionary;
 }) {
   return (
-    <aside className="hidden md:flex flex-col w-[150px] flex-shrink-0 px-10 lg:px-12 pt-12 lg:pt-14 pb-6 sticky top-0 self-start">
+    <aside className="hidden md:flex flex-col items-center pt-12 lg:pt-16 pb-10 text-center">
       <Link
         href={`/${lang}`}
         className="text-[13px] tracking-[0.4em] lowercase font-light leading-tight hover:opacity-70 transition-opacity"
@@ -22,34 +22,34 @@ export function Sidebar({
         SEL_HOME
       </span>
 
-      <nav className="flex flex-col gap-[3px] text-[10px] lowercase mt-6 text-zinc-700">
+      <nav className="flex flex-col items-center gap-[3px] text-[10px] lowercase mt-6 text-zinc-700">
         <Link
           href={`/${lang}/news`}
-          className="hover:text-black transition-colors w-fit"
+          className="hover:text-black transition-colors"
         >
           {dict.nav.news}
         </Link>
         <Link
           href={`/${lang}/projects`}
-          className="hover:text-black transition-colors w-fit"
+          className="hover:text-black transition-colors"
         >
           {dict.nav.projects}
         </Link>
         <Link
           href={`/${lang}/profile`}
-          className="hover:text-black transition-colors w-fit"
+          className="hover:text-black transition-colors"
         >
           {dict.nav.profile}
         </Link>
         <Link
           href={`/${lang}/recruit`}
-          className="hover:text-black transition-colors w-fit"
+          className="hover:text-black transition-colors"
         >
           {dict.nav.recruit}
         </Link>
         <Link
           href={`/${lang}/contact`}
-          className="hover:text-black transition-colors w-fit"
+          className="hover:text-black transition-colors"
         >
           {dict.nav.contact}
         </Link>
@@ -60,7 +60,7 @@ export function Sidebar({
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Instagram"
-        className="mt-3 inline-block text-zinc-700 hover:text-black transition-colors w-fit"
+        className="mt-3 inline-block text-zinc-700 hover:text-black transition-colors"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
