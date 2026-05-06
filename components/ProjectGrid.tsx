@@ -11,7 +11,7 @@ export function ProjectGrid({
   lang: Locale;
 }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 max-w-[1180px] mx-auto px-5 md:px-8 pb-20 md:pb-28">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 max-w-[1040px] mx-auto px-5 md:px-8 pb-20 md:pb-28">
       {projects.map((project) => (
         <Link
           key={project.slug}
@@ -23,7 +23,7 @@ export function ProjectGrid({
             alt={project.title[lang]}
             width={project.cover.width}
             height={project.cover.height}
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 380px"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 340px"
             className="w-full h-full object-cover block"
           />
         </Link>
