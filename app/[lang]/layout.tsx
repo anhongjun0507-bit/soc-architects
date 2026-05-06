@@ -33,10 +33,14 @@ export default async function LangLayout({
 
   return (
     <html lang={lang} className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-white text-zinc-900">
-        <Header lang={lang} dict={dict} />
-        <main className="flex-1">{children}</main>
-        <Footer copyright={dict.footer.copyright} />
+      <body className="min-h-full bg-white text-zinc-900">
+        <div className="flex flex-col md:flex-row min-h-screen">
+          <Header lang={lang} dict={dict} />
+          <div className="flex-1 min-w-0 flex flex-col">
+            <main className="flex-1">{children}</main>
+            <Footer copyright={dict.footer.copyright} />
+          </div>
+        </div>
       </body>
     </html>
   );

@@ -14,6 +14,8 @@ export type ProjectImage = {
   height: number;
 };
 
+export type GridSpan = "1x1" | "2x1" | "3x1" | "1x2" | "2x2" | "3x2";
+
 export type Project = {
   slug: string;
   year: number;
@@ -23,6 +25,7 @@ export type Project = {
   cover: ProjectImage;
   images: ProjectImage[];
   description: LocalizedString;
+  span: GridSpan;
 };
 
 const ph = (seed: string, w: number, h: number): ProjectImage => ({
@@ -45,6 +48,7 @@ export const projects: Project[] = [
       ja: "ダミー説明です。",
       en: "Placeholder description.",
     },
+    span: "2x2",
   },
   {
     slug: "yangpyeong-studio",
@@ -59,6 +63,7 @@ export const projects: Project[] = [
       ja: "ダミー説明です。",
       en: "Placeholder description.",
     },
+    span: "1x2",
   },
   {
     slug: "seochon-cafe",
@@ -73,6 +78,7 @@ export const projects: Project[] = [
       ja: "ダミー説明です。",
       en: "Placeholder description.",
     },
+    span: "3x2",
   },
   {
     slug: "han-river-pavilion",
@@ -87,6 +93,7 @@ export const projects: Project[] = [
       ja: "ダミー説明です。",
       en: "Placeholder description.",
     },
+    span: "3x1",
   },
   {
     slug: "donui-house",
@@ -101,6 +108,7 @@ export const projects: Project[] = [
       ja: "ダミー説明です。",
       en: "Placeholder description.",
     },
+    span: "2x2",
   },
   {
     slug: "songdo-block",
@@ -115,6 +123,7 @@ export const projects: Project[] = [
       ja: "ダミー説明です。",
       en: "Placeholder description.",
     },
+    span: "1x2",
   },
   {
     slug: "buam-residence",
@@ -129,6 +138,7 @@ export const projects: Project[] = [
       ja: "ダミー説明です。",
       en: "Placeholder description.",
     },
+    span: "2x1",
   },
   {
     slug: "garosu-shop",
@@ -143,6 +153,7 @@ export const projects: Project[] = [
       ja: "ダミー説明です。",
       en: "Placeholder description.",
     },
+    span: "1x1",
   },
   {
     slug: "tonbori-courtyard",
@@ -157,5 +168,6 @@ export const projects: Project[] = [
       ja: "ダミー説明です。",
       en: "Placeholder description.",
     },
+    span: "2x2",
   },
 ];
