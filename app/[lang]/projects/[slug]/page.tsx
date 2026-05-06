@@ -60,10 +60,10 @@ export default async function ProjectDetailPage({
           <div />
         )}
 
-        <dl className="grid grid-cols-[90px_1fr] gap-y-2 text-[13px] leading-relaxed self-start">
+        <dl className="space-y-4 text-[13px] leading-relaxed self-start">
           {meta.map((m) => (
-            <div key={m.label} className="contents">
-              <dt className="text-[10px] tracking-[0.25em] uppercase text-zinc-400 pt-[3px]">
+            <div key={m.label}>
+              <dt className="text-[10px] tracking-[0.25em] uppercase text-zinc-400 mb-1">
                 {m.label}
               </dt>
               <dd>{m.value}</dd>
