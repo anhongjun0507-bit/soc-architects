@@ -16,16 +16,18 @@ export function ProjectGrid({
         <Link
           key={project.slug}
           href={`/${lang}/projects/${project.slug}`}
-          className="block aspect-square overflow-hidden"
+          className="block aspect-square overflow-hidden bg-zinc-100"
         >
-          <Image
-            src={project.cover.src}
-            alt={project.title[lang]}
-            width={project.cover.width}
-            height={project.cover.height}
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 340px"
-            className="w-full h-full object-cover block"
-          />
+          {project.cover ? (
+            <Image
+              src={project.cover.src}
+              alt={project.title[lang]}
+              width={project.cover.width}
+              height={project.cover.height}
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 340px"
+              className="w-full h-full object-cover block"
+            />
+          ) : null}
         </Link>
       ))}
     </div>
