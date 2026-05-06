@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { hasLocale, locales } from "@/lib/i18n-config";
@@ -9,6 +10,24 @@ export function generateStaticParams() {
   return locales.flatMap((lang) =>
     projects.map((p) => ({ lang, slug: p.slug })),
   );
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps<"/[lang]/projects/[slug]">): Promise<Metadata> {
+  const { lang, slug } = await params;
+  if (!hasLocale(lang)) return {};
+  const project = projects.find((p) => p.slug === slug);
+  if (!project) return {};
+  const title = `${project.title[lang]} · so.c_architects`;
+  return {
+    title,
+    description: `${project.title[lang]} (${project.year}), ${project.location[lang]}`,
+    openGraph: {
+      title,
+      images: project.cover ? [project.cover.src] : undefined,
+    },
+  };
 }
 
 export default async function ProjectDetailPage({

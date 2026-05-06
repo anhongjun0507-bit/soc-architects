@@ -1,7 +1,7 @@
 import type { Locale } from "@/lib/i18n-config";
 
-export type LocalizedString = Record<Locale, string>;
-export type LocalizedParas = Record<Locale, string[]>;
+export type LocalizedString = Record<Locale, string> & { ja?: string };
+export type LocalizedParas = Record<Locale, string[]> & { ja?: string[] };
 
 export type ProjectType =
   | "architecture"
@@ -9,7 +9,7 @@ export type ProjectType =
   | "urban"
   | "public-art";
 
-export type ProjectPriority = "feature" | "medium" | "small";
+export type ProjectPriority = "feature" | "small";
 
 export type ProjectImage = {
   src: string;

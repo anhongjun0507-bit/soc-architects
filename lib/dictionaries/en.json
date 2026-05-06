@@ -2,14 +2,14 @@
   "nav": {
     "home": "HOME",
     "news": "news",
+    "publish": "publish",
     "projects": "projects",
     "profile": "profile",
     "recruit": "recruit",
     "contact": "contact"
   },
   "lang": {
-    "ko": "KR",
-    "ja": "JP",
+    "ko": "KO",
     "en": "EN"
   },
   "footer": {
@@ -25,6 +25,7 @@
     "profile": "Profile",
     "contact": "Contact",
     "news": "News",
+    "publish": "Publish",
     "recruit": "Recruit",
     "comingSoon": "Coming soon."
   },

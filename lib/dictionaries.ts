@@ -2,7 +2,6 @@ import type { Locale } from "./i18n-config";
 
 const dictionaries = {
   ko: () => import("./dictionaries/ko.json").then((m) => m.default),
-  ja: () => import("./dictionaries/ja.json").then((m) => m.default),
   en: () => import("./dictionaries/en.json").then((m) => m.default),
 };
 

@@ -1,6 +1,5 @@
 import { createClient } from "@sanity/client";
 import imageUrlBuilder from "@sanity/image-url";
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
@@ -17,7 +16,7 @@ export const sanityClient = projectId
 
 const builder = sanityClient ? imageUrlBuilder(sanityClient) : null;
 
-export const urlFor = (source: SanityImageSource) => {
+export const urlFor = (source: Parameters<NonNullable<typeof builder>["image"]>[0]) => {
   if (!builder) {
     throw new Error(
       "Sanity is not configured. Set NEXT_PUBLIC_SANITY_PROJECT_ID in .env.local",

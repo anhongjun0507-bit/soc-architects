@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale } from "@/lib/i18n-config";
 import { getDictionary } from "@/lib/dictionaries";
 import { office, principal } from "@/data/office";
+
+export const metadata: Metadata = {
+  title: "Profile · so.c_architects",
+};
 
 export default async function ProfilePage({
   params,
