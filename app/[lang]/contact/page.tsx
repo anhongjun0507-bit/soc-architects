@@ -16,7 +16,7 @@ export default async function ContactPage({
   const dict = await getDictionary(lang);
 
   return (
-    <section className="max-w-[1040px] mx-auto px-5 md:px-8 pt-6 md:pt-4 pb-16 md:pb-28 text-[14px] leading-relaxed text-zinc-800">
+    <section className="max-w-[1040px] mx-auto px-5 md:px-8 pt-6 md:pt-4 pb-16 md:pb-28 text-[15px] leading-relaxed text-zinc-800">
       <ul className="max-w-[680px] space-y-3">
         <li className="flex gap-6 md:gap-10">
           <span className="w-[110px] shrink-0 text-zinc-500 lowercase">

@@ -28,7 +28,7 @@ export function LangToggle({
   };
 
   return (
-    <div className="flex items-center gap-1.5 text-[10px] tracking-wider">
+    <div className="flex items-center gap-1.5 text-[11px] tracking-wider">
       {locales.map((loc, i) => (
         <span key={loc} className="flex items-center gap-1.5">
           <button

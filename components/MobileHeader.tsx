@@ -14,7 +14,7 @@ export function MobileHeader({
     <header className="md:hidden flex items-center justify-between px-5 pt-5 pb-3">
       <Link
         href={`/${lang}`}
-        className="text-[13px] tracking-[0.3em] lowercase font-light"
+        className="text-[14px] tracking-[0.3em] lowercase font-light"
       >
         so.c_architects
       </Link>

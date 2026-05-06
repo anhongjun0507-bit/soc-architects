@@ -93,7 +93,7 @@ export function ProjectGallery({
         </button>
 
         {images.length > 1 && (
-          <div className="mt-3 md:mt-4 flex items-center justify-between text-[11px] tracking-[0.15em] text-zinc-500 lowercase">
+          <div className="mt-3 md:mt-4 flex items-center justify-between text-[12px] tracking-[0.15em] text-zinc-500 lowercase">
             <span className="tabular-nums">
               {String(index + 1).padStart(2, "0")} /{" "}
               {String(images.length).padStart(2, "0")}
@@ -162,7 +162,7 @@ export function ProjectGallery({
               top: "calc(env(safe-area-inset-top, 0px) + 12px)",
               right: "calc(env(safe-area-inset-right, 0px) + 12px)",
             }}
-            className="absolute md:top-6 md:right-6 z-20 w-12 h-12 md:w-10 md:h-10 flex items-center justify-center text-white/70 hover:text-white text-[24px] md:text-[20px] leading-none"
+            className="absolute md:top-6 md:right-6 z-20 w-12 h-12 md:w-10 md:h-10 flex items-center justify-center text-white/70 hover:text-white text-[26px] md:text-[22px] leading-none"
           >
             ✕
           </button>
@@ -200,7 +200,7 @@ export function ProjectGallery({
                   bottom:
                     "calc(env(safe-area-inset-bottom, 0px) + 16px)",
                 }}
-                className="absolute left-0 right-0 text-center text-white/70 text-[11px] tabular-nums tracking-[0.15em] lowercase"
+                className="absolute left-0 right-0 text-center text-white/70 text-[12px] tabular-nums tracking-[0.15em] lowercase"
               >
                 {String(index + 1).padStart(2, "0")} /{" "}
                 {String(images.length).padStart(2, "0")}

@@ -20,7 +20,7 @@ export function ProjectGrid({
             href={`/${lang}/projects/${project.slug}`}
             className={`block ${isFeature ? "md:col-span-3" : ""}`}
           >
-            <div className="mb-3 md:mb-4 flex items-baseline gap-2 text-[12px] tracking-[0.05em] leading-relaxed">
+            <div className="mb-3 md:mb-4 flex items-baseline gap-2 text-[13px] tracking-[0.05em] leading-relaxed">
               <span className="text-zinc-900">{project.title[lang]}</span>
               <span className="text-zinc-300" aria-hidden>
                 ·
@@ -50,7 +50,7 @@ export function ProjectGrid({
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center">
-                  <span className="text-[10px] tracking-[0.25em] uppercase text-zinc-300">
+                  <span className="text-[11px] tracking-[0.25em] uppercase text-zinc-300">
                     coming soon
                   </span>
                 </div>

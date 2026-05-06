@@ -13,7 +13,7 @@ export function Footer({
       style={{ paddingBottom: "max(env(safe-area-inset-bottom), 2rem)" }}
       className="pt-12 md:pt-16"
     >
-      <div className="max-w-[1040px] mx-auto px-5 md:px-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-8 text-[11px] tracking-[0.05em] text-zinc-500 leading-relaxed">
+      <div className="max-w-[1040px] mx-auto px-5 md:px-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-8 text-[12px] tracking-[0.05em] text-zinc-500 leading-relaxed">
         <div className="space-y-1">
           <p>{office.address[lang]}</p>
           <p className="flex flex-wrap items-center gap-x-2 gap-y-1">

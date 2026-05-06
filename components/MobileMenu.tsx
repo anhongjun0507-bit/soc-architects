@@ -35,7 +35,7 @@ export function MobileMenu({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="md:hidden text-[10px] uppercase tracking-[0.2em] py-2 -my-2 px-1"
+        className="md:hidden text-[11px] uppercase tracking-[0.2em] py-2 -my-2 px-1"
         aria-label={dict.site.menu}
       >
         {dict.site.menu}
@@ -43,18 +43,18 @@ export function MobileMenu({
       {open && (
         <div className="fixed inset-0 z-50 bg-white flex flex-col px-5 pt-5 pb-[max(env(safe-area-inset-bottom),1.5rem)] md:hidden">
           <div className="flex items-center justify-between">
-            <span className="text-[13px] font-light tracking-[0.3em]">
+            <span className="text-[14px] font-light tracking-[0.3em]">
               so.c_architects
             </span>
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="text-[10px] uppercase tracking-[0.2em] py-2 -my-2 px-1"
+              className="text-[11px] uppercase tracking-[0.2em] py-2 -my-2 px-1"
             >
               {dict.site.close}
             </button>
           </div>
-          <nav className="flex flex-col gap-5 mt-14 text-[20px] lowercase font-light">
+          <nav className="flex flex-col gap-5 mt-14 text-[22px] lowercase font-light">
             {items.map((item) => (
               <Link
                 key={item.href || "home"}
