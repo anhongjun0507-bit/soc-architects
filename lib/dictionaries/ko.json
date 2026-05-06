@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "home": "HOME",
+    "news": "news",
+    "projects": "projects",
+    "profile": "profile",
+    "recruit": "recruit",
+    "contact": "contact"
+  },
+  "lang": {
+    "ko": "KR",
+    "ja": "JP",
+    "en": "EN"
+  },
+  "footer": {
+    "copyright": "©so.c_architects"
+  },
+  "site": {
+    "tagline": "건축 ｜ 인테리어 ｜ 도시 ｜ 공공미술",
+    "menu": "메뉴",
+    "close": "닫기"
+  },
+  "page": {
+    "projects": "프로젝트",
+    "profile": "프로필",
+    "contact": "연락처",
+    "news": "뉴스",
+    "recruit": "채용",
+    "comingSoon": "준비 중입니다."
+  }
+}

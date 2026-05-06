@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "home": "HOME",
+    "news": "news",
+    "projects": "projects",
+    "profile": "profile",
+    "recruit": "recruit",
+    "contact": "contact"
+  },
+  "lang": {
+    "ko": "KR",
+    "ja": "JP",
+    "en": "EN"
+  },
+  "footer": {
+    "copyright": "©so.c_architects"
+  },
+  "site": {
+    "tagline": "建築 ｜ インテリア ｜ 都市 ｜ 公共美術",
+    "menu": "メニュー",
+    "close": "閉じる"
+  },
+  "page": {
+    "projects": "プロジェクト",
+    "profile": "プロフィール",
+    "contact": "コンタクト",
+    "news": "ニュース",
+    "recruit": "採用",
+    "comingSoon": "準備中です。"
+  }
+}

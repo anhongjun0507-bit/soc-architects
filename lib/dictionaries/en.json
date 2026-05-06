@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "home": "HOME",
+    "news": "news",
+    "projects": "projects",
+    "profile": "profile",
+    "recruit": "recruit",
+    "contact": "contact"
+  },
+  "lang": {
+    "ko": "KR",
+    "ja": "JP",
+    "en": "EN"
+  },
+  "footer": {
+    "copyright": "©so.c_architects"
+  },
+  "site": {
+    "tagline": "architecture ｜ interior ｜ urban ｜ public art",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "page": {
+    "projects": "Projects",
+    "profile": "Profile",
+    "contact": "Contact",
+    "news": "News",
+    "recruit": "Recruit",
+    "comingSoon": "Coming soon."
+  }
+}
