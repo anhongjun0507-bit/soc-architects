@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { notFound } from "next/navigation";
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { hasLocale, locales } from "@/lib/i18n-config";
 import { getDictionary } from "@/lib/dictionaries";
@@ -35,8 +34,7 @@ export default async function LangLayout({
     <html lang={lang} className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full bg-white text-zinc-900">
         <div className="flex flex-col min-h-screen">
-          <Header lang={lang} dict={dict} />
-          <main className="flex-1">{children}</main>
+          {children}
           <Footer copyright={dict.footer.copyright} />
         </div>
       </body>
