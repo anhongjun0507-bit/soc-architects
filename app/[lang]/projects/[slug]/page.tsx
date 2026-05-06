@@ -32,13 +32,7 @@ export default async function ProjectDetailPage({
     meta.push({ label: "collaborator", value: project.collaborator });
 
   return (
-    <article className="max-w-[1040px] mx-auto px-5 md:px-8 pt-2 pb-24 md:pb-32 text-zinc-800">
-      <header className="mb-10 md:mb-14">
-        <h1 className="text-[22px] md:text-[26px] font-light tracking-[0.01em]">
-          {project.title[lang]}
-        </h1>
-      </header>
-
+    <article className="max-w-[1040px] mx-auto px-5 md:px-8 pt-4 md:pt-8 pb-24 md:pb-32 text-zinc-800">
       {project.images.length > 0 ? (
         <div className="mb-14 md:mb-20">
           <ProjectGallery images={project.images} alt={project.title[lang]} />
@@ -50,15 +44,18 @@ export default async function ProjectDetailPage({
       )}
 
       <div className="grid md:grid-cols-[1fr_280px] gap-10 md:gap-16 max-w-[1040px]">
-        {project.description ? (
-          <div className="space-y-4 text-[14.5px] leading-[1.85] text-zinc-700 max-w-[680px]">
-            {project.description[lang].map((para, i) => (
-              <p key={i}>{para}</p>
-            ))}
-          </div>
-        ) : (
-          <div />
-        )}
+        <div className="max-w-[680px]">
+          <h1 className="text-[22px] md:text-[26px] font-light tracking-[0.01em] mb-6 md:mb-8">
+            {project.title[lang]}
+          </h1>
+          {project.description && (
+            <div className="space-y-4 text-[14.5px] leading-[1.85] text-zinc-700">
+              {project.description[lang].map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
+          )}
+        </div>
 
         <dl className="space-y-4 text-[13px] leading-relaxed self-start">
           {meta.map((m) => (
