@@ -36,11 +36,7 @@ export default async function LangLayout({
       <body className="min-h-full flex flex-col bg-white text-zinc-900">
         <Header lang={lang} dict={dict} />
         <main className="flex-1">{children}</main>
-        <Footer
-          lang={lang}
-          copyright={dict.footer.copyright}
-          homeLabel={dict.nav.home}
-        />
+        <Footer copyright={dict.footer.copyright} />
       </body>
     </html>
   );
