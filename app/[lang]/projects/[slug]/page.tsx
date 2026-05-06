@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import { hasLocale, locales } from "@/lib/i18n-config";
 import { getDictionary } from "@/lib/dictionaries";
 import { projects } from "@/data/projects";
+import { ProjectGallery } from "@/components/ProjectGallery";
 
 export function generateStaticParams() {
   return locales.flatMap((lang) =>
@@ -22,53 +22,36 @@ export default async function ProjectDetailPage({
 
   const dict = await getDictionary(lang);
 
-  return (
-    <article className="max-w-[1040px] mx-auto px-5 md:px-8 pt-2 pb-20 md:pb-28 text-[14px] leading-relaxed text-zinc-800">
-      <header className="max-w-[680px] mb-12 md:mb-16">
-        <h1 className="text-[18px] mb-5">{project.title[lang]}</h1>
+  const meta: { label: string; value: string }[] = [
+    { label: "location", value: project.location[lang] },
+    { label: "year", value: String(project.year) },
+  ];
+  if (project.area) meta.push({ label: "area", value: project.area });
+  if (project.status) meta.push({ label: "status", value: project.status[lang] });
+  if (project.collaborator)
+    meta.push({ label: "collaborator", value: project.collaborator });
 
-        <ul className="space-y-1 text-[13px]">
-          <li className="flex gap-6 md:gap-10">
-            <span className="w-[110px] shrink-0 text-zinc-500 lowercase">
-              location
-            </span>
-            <span>{project.location[lang]}</span>
-          </li>
-          <li className="flex gap-6 md:gap-10">
-            <span className="w-[110px] shrink-0 text-zinc-500 lowercase">
-              year
-            </span>
-            <span className="tabular-nums">{project.year}</span>
-          </li>
-          {project.area && (
-            <li className="flex gap-6 md:gap-10">
-              <span className="w-[110px] shrink-0 text-zinc-500 lowercase">
-                area
-              </span>
-              <span className="tabular-nums">{project.area}</span>
-            </li>
-          )}
-          {project.status && (
-            <li className="flex gap-6 md:gap-10">
-              <span className="w-[110px] shrink-0 text-zinc-500 lowercase">
-                status
-              </span>
-              <span>{project.status[lang]}</span>
-            </li>
-          )}
-          {project.collaborator && (
-            <li className="flex gap-6 md:gap-10">
-              <span className="w-[110px] shrink-0 text-zinc-500 lowercase">
-                collaborator
-              </span>
-              <span>{project.collaborator}</span>
-            </li>
-          )}
-        </ul>
+  return (
+    <article className="max-w-[1040px] mx-auto px-5 md:px-8 pt-2 pb-24 md:pb-32 text-zinc-800">
+      <header className="mb-12 md:mb-16">
+        <h1 className="text-[22px] md:text-[26px] font-light tracking-[0.01em] mb-8 md:mb-10">
+          {project.title[lang]}
+        </h1>
+
+        <dl className="grid grid-cols-[100px_1fr] md:grid-cols-[120px_1fr] gap-y-2 text-[13px] leading-relaxed max-w-[680px]">
+          {meta.map((m) => (
+            <div key={m.label} className="contents">
+              <dt className="text-[10px] tracking-[0.25em] uppercase text-zinc-400 pt-[3px]">
+                {m.label}
+              </dt>
+              <dd>{m.value}</dd>
+            </div>
+          ))}
+        </dl>
       </header>
 
       {project.description && (
-        <div className="max-w-[680px] space-y-3 mb-14 md:mb-20">
+        <div className="max-w-[680px] mb-16 md:mb-20 space-y-4 text-[14.5px] leading-[1.85] text-zinc-700">
           {project.description[lang].map((para, i) => (
             <p key={i}>{para}</p>
           ))}
@@ -76,30 +59,17 @@ export default async function ProjectDetailPage({
       )}
 
       {project.images.length > 0 ? (
-        <div className="space-y-3 md:space-y-4">
-          {project.images.map((image, i) => (
-            <Image
-              key={i}
-              src={image.src}
-              alt={`${project.title[lang]} ${i + 1}`}
-              width={image.width}
-              height={image.height}
-              sizes="(max-width: 1040px) 100vw, 1040px"
-              className="w-full h-auto block"
-              priority={i === 0}
-            />
-          ))}
-        </div>
+        <ProjectGallery images={project.images} alt={project.title[lang]} />
       ) : (
-        <p className="text-zinc-400 text-[13px] mt-2">
+        <p className="text-zinc-400 text-[12px] tracking-[0.2em] uppercase mt-2">
           {dict.page.comingSoon}
         </p>
       )}
 
-      <div className="mt-16 md:mt-20 text-[12px]">
+      <div className="mt-20 md:mt-28 text-[11px] tracking-[0.2em] uppercase">
         <Link
           href={`/${lang}`}
-          className="text-zinc-500 hover:text-black transition-colors lowercase"
+          className="text-zinc-500 hover:text-black transition-colors"
         >
           ← projects
         </Link>
