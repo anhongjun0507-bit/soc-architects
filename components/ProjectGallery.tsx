@@ -86,8 +86,9 @@ export function ProjectGallery({
             width={current.width}
             height={current.height}
             sizes="(max-width: 1040px) 100vw, 1040px"
+            quality={90}
             className="w-full h-auto block pointer-events-none"
-            priority
+            preload
           />
         </button>
 
@@ -174,8 +175,9 @@ export function ProjectGallery({
               width={current.width}
               height={current.height}
               sizes="100vw"
+              quality={95}
               className="max-w-full max-h-full w-auto h-auto object-contain pointer-events-none"
-              priority
+              preload
             />
           </div>
 
