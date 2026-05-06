@@ -11,18 +11,18 @@ export function Sidebar({
   dict: Dictionary;
 }) {
   return (
-    <aside className="hidden md:flex flex-col items-center pt-12 lg:pt-16 pb-10 text-center">
+    <aside className="hidden md:flex flex-col items-center pt-14 lg:pt-20 pb-12 text-center">
       <Link
         href={`/${lang}`}
-        className="text-[13px] tracking-[0.4em] lowercase font-light leading-tight hover:opacity-70 transition-opacity"
+        className="text-[16px] tracking-[0.4em] lowercase font-light leading-tight hover:opacity-70 transition-opacity"
       >
         so.c_architects
       </Link>
-      <span className="text-[9px] tracking-[0.2em] text-zinc-500 uppercase mt-1">
+      <span className="text-[11px] tracking-[0.2em] text-zinc-500 uppercase mt-1.5">
         SEL_HOME
       </span>
 
-      <nav className="flex flex-col items-center gap-[3px] text-[10px] lowercase mt-6 text-zinc-700">
+      <nav className="flex flex-col items-center gap-[5px] text-[12px] lowercase mt-7 text-zinc-700">
         <Link
           href={`/${lang}/news`}
           className="hover:text-black transition-colors"
@@ -60,12 +60,12 @@ export function Sidebar({
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Instagram"
-        className="mt-3 inline-block text-zinc-700 hover:text-black transition-colors"
+        className="mt-4 inline-block text-zinc-700 hover:text-black transition-colors"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="12"
-          height="12"
+          width="14"
+          height="14"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -79,7 +79,7 @@ export function Sidebar({
         </svg>
       </a>
 
-      <div className="mt-5">
+      <div className="mt-6">
         <LangToggle currentLang={lang} labels={dict.lang} />
       </div>
     </aside>
