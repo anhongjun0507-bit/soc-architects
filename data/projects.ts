@@ -9,6 +9,8 @@ export type ProjectType =
   | "urban"
   | "public-art";
 
+export type ProjectPriority = "feature" | "medium" | "small";
+
 export type ProjectImage = {
   src: string;
   width: number;
@@ -19,6 +21,7 @@ export type Project = {
   slug: string;
   year: number;
   type: ProjectType;
+  priority?: ProjectPriority;
   title: LocalizedString;
   location: LocalizedString;
   status?: LocalizedString;
@@ -91,6 +94,7 @@ export const projects: Project[] = [
     slug: "jules-house",
     year: 2026,
     type: "architecture",
+    priority: "feature",
     title: {
       ko: "줄스하우스",
       ja: "ジュールスハウス",
@@ -109,6 +113,7 @@ export const projects: Project[] = [
     slug: "mangmi-ri",
     year: 2022,
     type: "architecture",
+    priority: "feature",
     title: {
       ko: "망미농장",
       ja: "マンミ農場",
@@ -146,6 +151,7 @@ export const projects: Project[] = [
     slug: "engraved-void",
     year: 2025,
     type: "public-art",
+    priority: "feature",
     title: {
       ko: "새겨진 보이드",
       ja: "刻まれたヴォイド",
@@ -183,6 +189,7 @@ export const projects: Project[] = [
     slug: "mojeon-dong",
     year: 2024,
     type: "architecture",
+    priority: "medium",
     title: {
       ko: "모전동 DIG 268",
       ja: "モジョン洞 DIG 268",
@@ -219,6 +226,7 @@ export const projects: Project[] = [
     slug: "eunpyeon-ri",
     year: 2021,
     type: "architecture",
+    priority: "medium",
     title: { ko: "은편리", ja: "ウンピョンリ", en: "Eunpyeon-ri" },
     location: {
       ko: "울산 울주군 두동면",
