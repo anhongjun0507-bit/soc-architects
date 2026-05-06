@@ -11,14 +11,14 @@ export function ProjectGrid({
   lang: Locale;
 }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-10 gap-y-14 md:gap-y-20 max-w-[1240px] mx-auto px-5 md:px-10 pt-2 md:pt-2 pb-16 md:pb-28">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4 md:gap-x-5 gap-y-12 md:gap-y-16 max-w-[1240px] mx-auto px-5 md:px-10 pt-2 pb-16 md:pb-28">
       {projects.map((project, i) => {
-        const cardImages = project.images.slice(0, 2);
+        const isFeature = project.priority === "feature";
         return (
           <Link
             key={project.slug}
             href={`/${lang}/projects/${project.slug}`}
-            className="block group"
+            className={`block ${isFeature ? "md:col-span-3" : ""}`}
           >
             <div className="mb-3 md:mb-4 flex items-baseline gap-2 text-[12px] tracking-[0.05em] leading-relaxed">
               <span className="text-zinc-900">{project.title[lang]}</span>
@@ -28,33 +28,34 @@ export function ProjectGrid({
               <span className="text-zinc-500">{project.location[lang]}</span>
             </div>
 
-            {cardImages.length > 0 ? (
-              <div className="space-y-2 md:space-y-3">
-                {cardImages.map((img, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-zinc-100 overflow-hidden"
-                  >
-                    <Image
-                      src={img.src}
-                      alt={`${project.title[lang]} ${idx + 1}`}
-                      width={img.width}
-                      height={img.height}
-                      sizes="(max-width: 768px) 100vw, 600px"
-                      quality={90}
-                      preload={i < 4}
-                      className="w-full h-auto block"
-                    />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="aspect-[3/2] bg-zinc-100 flex items-center justify-center">
-                <span className="text-[10px] tracking-[0.25em] uppercase text-zinc-300">
-                  coming soon
-                </span>
-              </div>
-            )}
+            <div
+              className={`bg-zinc-100 overflow-hidden ${
+                isFeature ? "aspect-[16/9]" : "aspect-[3/2]"
+              }`}
+            >
+              {project.cover ? (
+                <Image
+                  src={project.cover.src}
+                  alt={project.title[lang]}
+                  width={project.cover.width}
+                  height={project.cover.height}
+                  sizes={
+                    isFeature
+                      ? "(max-width: 768px) 100vw, 1200px"
+                      : "(max-width: 768px) 100vw, 380px"
+                  }
+                  quality={90}
+                  preload={i < 4}
+                  className="w-full h-full object-cover block"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <span className="text-[10px] tracking-[0.25em] uppercase text-zinc-300">
+                    coming soon
+                  </span>
+                </div>
+              )}
+            </div>
           </Link>
         );
       })}
