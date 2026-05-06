@@ -11,7 +11,7 @@ export function Sidebar({
   dict: Dictionary;
 }) {
   return (
-    <aside className="hidden md:flex flex-col items-start pt-14 lg:pt-20 pb-12 pl-20 lg:pl-28 text-left">
+    <aside className="hidden md:flex flex-col items-start pt-14 lg:pt-20 pb-12 max-w-[1040px] mx-auto w-full px-5 md:px-8 text-left">
       <Link
         href={`/${lang}`}
         className="text-[16px] tracking-[0.4em] lowercase font-light leading-tight hover:opacity-70 transition-opacity"
