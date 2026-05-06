@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
+import { CompactTopBar } from "@/components/CompactTopBar";
 import { Footer } from "@/components/Footer";
+import { MobileHeader } from "@/components/MobileHeader";
 import { hasLocale, locales } from "@/lib/i18n-config";
 import { getDictionary } from "@/lib/dictionaries";
 import "../globals.css";
@@ -48,7 +50,9 @@ export default async function LangLayout({
       </head>
       <body className="min-h-full bg-white text-zinc-900">
         <div className="flex flex-col min-h-screen">
-          {children}
+          <MobileHeader lang={lang} dict={dict} />
+          <CompactTopBar lang={lang} dict={dict} />
+          <main className="flex-1">{children}</main>
           <Footer copyright={dict.footer.copyright} lang={lang} />
         </div>
       </body>
