@@ -4,9 +4,10 @@
   --background: #ffffff;
   --foreground: #111111;
   --font-sans:
-    var(--font-inter), -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans", "Apple SD Gothic Neo", "Malgun Gothic", "Yu Gothic",
-    "Noto Sans KR", "Noto Sans JP", system-ui, sans-serif;
+    "Pretendard Variable", "Pretendard JP Variable", -apple-system,
+    BlinkMacSystemFont, "Apple SD Gothic Neo", "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", "Yu Gothic", "Noto Sans KR", "Noto Sans JP", system-ui,
+    sans-serif;
 }
 
 @theme inline {
@@ -19,5 +20,8 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  font-feature-settings: "ss06";
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
