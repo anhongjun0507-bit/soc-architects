@@ -22,7 +22,7 @@ export function Sidebar({
         SEL_HOME
       </span>
 
-      <nav className="flex flex-col items-start gap-[5px] text-[12px] lowercase mt-7 text-zinc-700">
+      <nav className="flex flex-col items-start gap-[5px] text-[14px] lowercase mt-7 text-zinc-700">
         <Link
           href={`/${lang}/news`}
           className="hover:text-black transition-colors"
