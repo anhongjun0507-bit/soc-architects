@@ -1,31 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n-config";
-import type { Project, ProjectPriority } from "@/data/projects";
-
-const layout: Record<
-  ProjectPriority,
-  { cell: string; aspect: string; sizes: string; quality: number }
-> = {
-  feature: {
-    cell: "col-span-2 md:col-span-6",
-    aspect: "aspect-[16/9]",
-    sizes: "(max-width: 768px) 100vw, 1040px",
-    quality: 90,
-  },
-  medium: {
-    cell: "col-span-2 md:col-span-3",
-    aspect: "aspect-[3/2]",
-    sizes: "(max-width: 768px) 100vw, 520px",
-    quality: 90,
-  },
-  small: {
-    cell: "col-span-1 md:col-span-2",
-    aspect: "aspect-square",
-    sizes: "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 360px",
-    quality: 90,
-  },
-};
+import type { Project } from "@/data/projects";
 
 export function ProjectGrid({
   projects,
@@ -35,32 +11,46 @@ export function ProjectGrid({
   lang: Locale;
 }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-6 gap-3 md:gap-4 max-w-[1040px] mx-auto px-5 md:px-8 pt-2 md:pt-0 pb-16 md:pb-28">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-10 gap-y-14 md:gap-y-20 max-w-[1240px] mx-auto px-5 md:px-10 pt-2 md:pt-2 pb-16 md:pb-28">
       {projects.map((project, i) => {
-        const cfg = layout[project.priority ?? "small"];
+        const cardImages = project.images.slice(0, 2);
         return (
           <Link
             key={project.slug}
             href={`/${lang}/projects/${project.slug}`}
-            className={`block ${cfg.cell} ${cfg.aspect} overflow-hidden bg-zinc-100`}
+            className="block group"
           >
-            {project.cover ? (
-              <Image
-                src={project.cover.src}
-                alt={project.title[lang]}
-                width={project.cover.width}
-                height={project.cover.height}
-                sizes={cfg.sizes}
-                quality={cfg.quality}
-                preload={i < 4}
-                className="w-full h-full object-cover block"
-              />
+            <div className="mb-3 md:mb-4 flex items-baseline gap-2 text-[12px] tracking-[0.05em] leading-relaxed">
+              <span className="text-zinc-900">{project.title[lang]}</span>
+              <span className="text-zinc-300" aria-hidden>
+                ·
+              </span>
+              <span className="text-zinc-500">{project.location[lang]}</span>
+            </div>
+
+            {cardImages.length > 0 ? (
+              <div className="space-y-2 md:space-y-3">
+                {cardImages.map((img, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-zinc-100 overflow-hidden"
+                  >
+                    <Image
+                      src={img.src}
+                      alt={`${project.title[lang]} ${idx + 1}`}
+                      width={img.width}
+                      height={img.height}
+                      sizes="(max-width: 768px) 100vw, 600px"
+                      quality={90}
+                      preload={i < 4}
+                      className="w-full h-auto block"
+                    />
+                  </div>
+                ))}
+              </div>
             ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center text-center gap-2 px-4 text-zinc-400">
-                <span className="text-[11px] tracking-[0.15em] uppercase">
-                  {project.title[lang]}
-                </span>
-                <span className="text-[9px] tracking-[0.2em] uppercase text-zinc-300">
+              <div className="aspect-[3/2] bg-zinc-100 flex items-center justify-center">
+                <span className="text-[10px] tracking-[0.25em] uppercase text-zinc-300">
                   coming soon
                 </span>
               </div>
