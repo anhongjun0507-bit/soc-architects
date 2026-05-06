@@ -21,13 +21,7 @@ export function CompactTopBar({
 
       <nav className="flex items-center gap-5 text-[12px] lowercase text-zinc-700">
         <Link
-          href={`/${lang}/news`}
-          className="hover:text-black transition-colors"
-        >
-          {dict.nav.news}
-        </Link>
-        <Link
-          href={`/${lang}/projects`}
+          href={`/${lang}`}
           className="hover:text-black transition-colors"
         >
           {dict.nav.projects}
@@ -37,12 +31,6 @@ export function CompactTopBar({
           className="hover:text-black transition-colors"
         >
           {dict.nav.profile}
-        </Link>
-        <Link
-          href={`/${lang}/recruit`}
-          className="hover:text-black transition-colors"
-        >
-          {dict.nav.recruit}
         </Link>
         <Link
           href={`/${lang}/contact`}

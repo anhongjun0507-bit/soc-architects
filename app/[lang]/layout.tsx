@@ -49,7 +49,7 @@ export default async function LangLayout({
       <body className="min-h-full bg-white text-zinc-900">
         <div className="flex flex-col min-h-screen">
           {children}
-          <Footer copyright={dict.footer.copyright} />
+          <Footer copyright={dict.footer.copyright} lang={lang} />
         </div>
       </body>
     </html>

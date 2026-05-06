@@ -23,11 +23,8 @@ export function MobileMenu({
   }, [open]);
 
   const items = [
-    { href: "", label: dict.nav.home },
-    { href: "/news", label: dict.nav.news },
-    { href: "/projects", label: dict.nav.projects },
+    { href: "", label: dict.nav.projects },
     { href: "/profile", label: dict.nav.profile },
-    { href: "/recruit", label: dict.nav.recruit },
     { href: "/contact", label: dict.nav.contact },
   ];
 

@@ -29,7 +29,16 @@ export function ProjectGrid({
               preload={i < 6}
               className="w-full h-full object-cover block"
             />
-          ) : null}
+          ) : (
+            <div className="w-full h-full flex flex-col items-center justify-center text-center gap-2 px-4 text-zinc-400">
+              <span className="text-[11px] tracking-[0.15em] uppercase">
+                {project.title[lang]}
+              </span>
+              <span className="text-[9px] tracking-[0.2em] uppercase text-zinc-300">
+                coming soon
+              </span>
+            </div>
+          )}
         </Link>
       ))}
     </div>

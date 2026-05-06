@@ -17,8 +17,11 @@ export default async function ProjectDetailPage({
   const { lang, slug } = await params;
   if (!hasLocale(lang)) notFound();
 
-  const project = projects.find((p) => p.slug === slug);
-  if (!project) notFound();
+  const idx = projects.findIndex((p) => p.slug === slug);
+  if (idx === -1) notFound();
+  const project = projects[idx];
+  const prevProject = idx > 0 ? projects[idx - 1] : null;
+  const nextProject = idx < projects.length - 1 ? projects[idx + 1] : null;
 
   const dict = await getDictionary(lang);
 
@@ -69,14 +72,34 @@ export default async function ProjectDetailPage({
         </dl>
       </div>
 
-      <div className="mt-20 md:mt-28 text-[11px] tracking-[0.2em] uppercase">
+      <nav className="mt-20 md:mt-28 grid grid-cols-3 items-center text-[11px] tracking-[0.2em] uppercase text-zinc-500">
+        {prevProject ? (
+          <Link
+            href={`/${lang}/projects/${prevProject.slug}`}
+            className="hover:text-black transition-colors justify-self-start truncate"
+          >
+            ← {prevProject.title[lang]}
+          </Link>
+        ) : (
+          <span />
+        )}
         <Link
           href={`/${lang}`}
-          className="text-zinc-500 hover:text-black transition-colors"
+          className="hover:text-black transition-colors justify-self-center"
         >
-          ← projects
+          projects
         </Link>
-      </div>
+        {nextProject ? (
+          <Link
+            href={`/${lang}/projects/${nextProject.slug}`}
+            className="hover:text-black transition-colors justify-self-end truncate"
+          >
+            {nextProject.title[lang]} →
+          </Link>
+        ) : (
+          <span />
+        )}
+      </nav>
     </article>
   );
 }
