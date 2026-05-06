@@ -33,12 +33,34 @@ export default async function ProjectDetailPage({
 
   return (
     <article className="max-w-[1040px] mx-auto px-5 md:px-8 pt-2 pb-24 md:pb-32 text-zinc-800">
-      <header className="mb-12 md:mb-16">
-        <h1 className="text-[22px] md:text-[26px] font-light tracking-[0.01em] mb-8 md:mb-10">
+      <header className="mb-10 md:mb-14">
+        <h1 className="text-[22px] md:text-[26px] font-light tracking-[0.01em]">
           {project.title[lang]}
         </h1>
+      </header>
 
-        <dl className="grid grid-cols-[100px_1fr] md:grid-cols-[120px_1fr] gap-y-2 text-[13px] leading-relaxed max-w-[680px]">
+      {project.images.length > 0 ? (
+        <div className="mb-14 md:mb-20">
+          <ProjectGallery images={project.images} alt={project.title[lang]} />
+        </div>
+      ) : (
+        <p className="mb-14 md:mb-20 text-zinc-400 text-[12px] tracking-[0.2em] uppercase">
+          {dict.page.comingSoon}
+        </p>
+      )}
+
+      <div className="grid md:grid-cols-[1fr_280px] gap-10 md:gap-16 max-w-[1040px]">
+        {project.description ? (
+          <div className="space-y-4 text-[14.5px] leading-[1.85] text-zinc-700 max-w-[680px]">
+            {project.description[lang].map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
+          </div>
+        ) : (
+          <div />
+        )}
+
+        <dl className="grid grid-cols-[90px_1fr] gap-y-2 text-[13px] leading-relaxed self-start">
           {meta.map((m) => (
             <div key={m.label} className="contents">
               <dt className="text-[10px] tracking-[0.25em] uppercase text-zinc-400 pt-[3px]">
@@ -48,23 +70,7 @@ export default async function ProjectDetailPage({
             </div>
           ))}
         </dl>
-      </header>
-
-      {project.description && (
-        <div className="max-w-[680px] mb-16 md:mb-20 space-y-4 text-[14.5px] leading-[1.85] text-zinc-700">
-          {project.description[lang].map((para, i) => (
-            <p key={i}>{para}</p>
-          ))}
-        </div>
-      )}
-
-      {project.images.length > 0 ? (
-        <ProjectGallery images={project.images} alt={project.title[lang]} />
-      ) : (
-        <p className="text-zinc-400 text-[12px] tracking-[0.2em] uppercase mt-2">
-          {dict.page.comingSoon}
-        </p>
-      )}
+      </div>
 
       <div className="mt-20 md:mt-28 text-[11px] tracking-[0.2em] uppercase">
         <Link
