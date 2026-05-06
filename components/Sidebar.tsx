@@ -11,22 +11,18 @@ export function Sidebar({
   dict: Dictionary;
 }) {
   return (
-    <aside className="hidden md:flex flex-col gap-1 w-[160px] lg:w-[180px] flex-shrink-0 px-6 pt-12 pb-6 sticky top-0 self-start">
+    <aside className="hidden md:flex flex-col w-[140px] lg:w-[150px] flex-shrink-0 px-6 pt-10 lg:pt-14 pb-6 sticky top-0 self-start">
       <Link
         href={`/${lang}`}
-        className="text-[15px] lg:text-[16px] tracking-[0.35em] lowercase font-light leading-tight hover:opacity-70 transition-opacity"
+        className="text-[13px] lg:text-[14px] tracking-[0.4em] lowercase font-light leading-tight hover:opacity-70 transition-opacity"
       >
         so.c_architects
       </Link>
-      <span className="text-[10px] tracking-[0.2em] text-zinc-500 uppercase mt-1">
+      <span className="text-[9px] tracking-[0.2em] text-zinc-500 uppercase mt-0.5">
         SEL_HOME
       </span>
 
-      <div className="mt-3">
-        <LangToggle currentLang={lang} labels={dict.lang} />
-      </div>
-
-      <nav className="flex flex-col gap-[6px] text-[11px] lowercase mt-8 text-zinc-700">
+      <nav className="flex flex-col gap-[3px] text-[10px] lowercase mt-7 text-zinc-700">
         <Link
           href={`/${lang}/news`}
           className="hover:text-black transition-colors w-fit"
@@ -64,12 +60,12 @@ export function Sidebar({
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Instagram"
-        className="mt-5 inline-block text-zinc-700 hover:text-black transition-colors w-fit"
+        className="mt-3 inline-block text-zinc-700 hover:text-black transition-colors w-fit"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
+          width="12"
+          height="12"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -82,6 +78,10 @@ export function Sidebar({
           <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
         </svg>
       </a>
+
+      <div className="mt-5">
+        <LangToggle currentLang={lang} labels={dict.lang} />
+      </div>
     </aside>
   );
 }
