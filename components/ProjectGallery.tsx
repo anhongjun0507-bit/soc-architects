@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { ProjectImage } from "@/data/projects";
 
 export function ProjectGallery({
@@ -12,108 +12,168 @@ export function ProjectGallery({
   alt: string;
 }) {
   const [index, setIndex] = useState(0);
+  const [open, setOpen] = useState(false);
+
+  const prev = useCallback(
+    () => setIndex((i) => (i - 1 + images.length) % images.length),
+    [images.length],
+  );
+  const next = useCallback(
+    () => setIndex((i) => (i + 1) % images.length),
+    [images.length],
+  );
 
   useEffect(() => {
-    if (images.length <= 1) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") {
-        setIndex((i) => (i - 1 + images.length) % images.length);
-      } else if (e.key === "ArrowRight") {
-        setIndex((i) => (i + 1) % images.length);
+      if (e.key === "Escape" && open) {
+        setOpen(false);
+        return;
       }
+      if (images.length <= 1) return;
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [images.length]);
+  }, [images.length, open, prev, next]);
+
+  useEffect(() => {
+    if (!open) return;
+    const orig = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = orig;
+    };
+  }, [open]);
 
   if (images.length === 0) return null;
 
   const current = images[index];
-  const prev = () => setIndex((i) => (i - 1 + images.length) % images.length);
-  const next = () => setIndex((i) => (i + 1) % images.length);
 
   return (
-    <div>
-      <div className="relative bg-zinc-50">
-        <Image
-          src={current.src}
-          alt={`${alt} ${index + 1}`}
-          width={current.width}
-          height={current.height}
-          sizes="(max-width: 1040px) 100vw, 1040px"
-          className="w-full h-auto block"
-          priority
-        />
+    <>
+      <div>
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label="View fullscreen"
+          className="block w-full bg-zinc-50 cursor-zoom-in"
+        >
+          <Image
+            src={current.src}
+            alt={`${alt} ${index + 1}`}
+            width={current.width}
+            height={current.height}
+            sizes="(max-width: 1040px) 100vw, 1040px"
+            className="w-full h-auto block"
+            priority
+          />
+        </button>
 
         {images.length > 1 && (
-          <>
-            <button
-              type="button"
-              onClick={prev}
-              aria-label="Previous image"
-              className="absolute left-0 top-0 h-full w-1/2 cursor-w-resize focus:outline-none"
-            />
-            <button
-              type="button"
-              onClick={next}
-              aria-label="Next image"
-              className="absolute right-0 top-0 h-full w-1/2 cursor-e-resize focus:outline-none"
-            />
-          </>
+          <div className="mt-4 flex items-center justify-between text-[11px] tracking-[0.15em] text-zinc-500 lowercase">
+            <span className="tabular-nums">
+              {String(index + 1).padStart(2, "0")} /{" "}
+              {String(images.length).padStart(2, "0")}
+            </span>
+            <div className="flex gap-5">
+              <button
+                type="button"
+                onClick={prev}
+                className="hover:text-black transition-colors"
+              >
+                prev
+              </button>
+              <button
+                type="button"
+                onClick={next}
+                className="hover:text-black transition-colors"
+              >
+                next
+              </button>
+            </div>
+          </div>
+        )}
+
+        {images.length > 1 && (
+          <div className="mt-5 grid grid-cols-6 sm:grid-cols-8 md:grid-cols-12 gap-1.5">
+            {images.map((thumb, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setIndex(i)}
+                aria-label={`Image ${i + 1}`}
+                aria-current={i === index}
+                className={`block aspect-square overflow-hidden bg-zinc-100 transition-opacity ${
+                  i === index
+                    ? "opacity-100"
+                    : "opacity-40 hover:opacity-80"
+                }`}
+              >
+                <Image
+                  src={thumb.src}
+                  alt=""
+                  width={thumb.width}
+                  height={thumb.height}
+                  sizes="80px"
+                  className="w-full h-full object-cover block"
+                />
+              </button>
+            ))}
+          </div>
         )}
       </div>
 
-      {images.length > 1 && (
-        <div className="mt-4 flex items-center justify-between text-[11px] tracking-[0.15em] text-zinc-500 lowercase">
-          <span className="tabular-nums">
-            {String(index + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}
-          </span>
-          <div className="flex gap-5">
-            <button
-              type="button"
-              onClick={prev}
-              className="hover:text-black transition-colors"
-            >
-              prev
-            </button>
-            <button
-              type="button"
-              onClick={next}
-              className="hover:text-black transition-colors"
-            >
-              next
-            </button>
-          </div>
-        </div>
-      )}
+      {open && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
+        >
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label="Close"
+            className="absolute top-4 right-4 md:top-6 md:right-6 z-10 w-10 h-10 flex items-center justify-center text-white/70 hover:text-white text-[20px] leading-none"
+          >
+            ✕
+          </button>
 
-      {images.length > 1 && (
-        <div className="mt-5 grid grid-cols-6 sm:grid-cols-8 md:grid-cols-12 gap-1.5">
-          {images.map((img, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => setIndex(i)}
-              aria-label={`Image ${i + 1}`}
-              aria-current={i === index}
-              className={`block aspect-square overflow-hidden bg-zinc-100 transition-opacity ${
-                i === index
-                  ? "opacity-100"
-                  : "opacity-40 hover:opacity-80"
-              }`}
-            >
-              <Image
-                src={img.src}
-                alt=""
-                width={img.width}
-                height={img.height}
-                sizes="80px"
-                className="w-full h-full object-cover block"
+          <div className="relative w-full h-full flex items-center justify-center px-4 md:px-12 py-12">
+            <Image
+              key={current.src}
+              src={current.src}
+              alt={`${alt} ${index + 1}`}
+              width={current.width}
+              height={current.height}
+              sizes="100vw"
+              className="max-w-full max-h-full w-auto h-auto object-contain"
+              priority
+            />
+          </div>
+
+          {images.length > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={prev}
+                aria-label="Previous"
+                className="absolute left-0 top-0 h-full w-1/4 cursor-w-resize focus:outline-none"
               />
-            </button>
-          ))}
+              <button
+                type="button"
+                onClick={next}
+                aria-label="Next"
+                className="absolute right-0 top-0 h-full w-1/4 cursor-e-resize focus:outline-none"
+              />
+              <div className="absolute bottom-5 left-0 right-0 text-center text-white/70 text-[11px] tabular-nums tracking-[0.15em] lowercase">
+                {String(index + 1).padStart(2, "0")} /{" "}
+                {String(images.length).padStart(2, "0")}
+              </div>
+            </>
+          )}
         </div>
       )}
-    </div>
+    </>
   );
 }

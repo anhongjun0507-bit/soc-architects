@@ -32,7 +32,7 @@ export default async function ProjectDetailPage({
     meta.push({ label: "collaborator", value: project.collaborator });
 
   return (
-    <article className="max-w-[1040px] mx-auto px-5 md:px-8 pt-4 md:pt-8 pb-24 md:pb-32 text-zinc-800">
+    <article className="max-w-[1040px] mx-auto px-5 md:px-8 pt-2 md:pt-3 pb-24 md:pb-32 text-zinc-800">
       {project.images.length > 0 ? (
         <div className="mb-14 md:mb-20">
           <ProjectGallery images={project.images} alt={project.title[lang]} />
