@@ -27,5 +27,20 @@
     "news": "뉴스",
     "recruit": "채용",
     "comingSoon": "준비 중입니다."
+  },
+  "profile": {
+    "office": "사무소",
+    "founded": "설립",
+    "fields": "분야",
+    "location": "위치",
+    "principal": "대표",
+    "education": "학력",
+    "career": "경력"
+  },
+  "contact": {
+    "email": "이메일",
+    "phone": "전화",
+    "address": "주소",
+    "instagram": "인스타그램"
   }
 }

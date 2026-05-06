@@ -27,5 +27,20 @@
     "news": "News",
     "recruit": "Recruit",
     "comingSoon": "Coming soon."
+  },
+  "profile": {
+    "office": "office",
+    "founded": "founded",
+    "fields": "fields",
+    "location": "location",
+    "principal": "principal",
+    "education": "education",
+    "career": "career"
+  },
+  "contact": {
+    "email": "email",
+    "phone": "phone",
+    "address": "address",
+    "instagram": "instagram"
   }
 }
