@@ -11,10 +11,10 @@ export function MobileHeader({
   dict: Dictionary;
 }) {
   return (
-    <header className="md:hidden flex items-center justify-between px-4 py-3 border-b border-black/10">
+    <header className="md:hidden flex items-center justify-between px-5 pt-5 pb-3">
       <Link
         href={`/${lang}`}
-        className="text-sm tracking-[0.3em] lowercase font-light"
+        className="text-[13px] tracking-[0.3em] lowercase font-light"
       >
         so.c_architects
       </Link>

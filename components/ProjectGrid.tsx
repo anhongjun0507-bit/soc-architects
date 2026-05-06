@@ -11,7 +11,7 @@ export function ProjectGrid({
   lang: Locale;
 }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 max-w-[1040px] mx-auto px-5 md:px-8 pb-20 md:pb-28">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 max-w-[1040px] mx-auto px-5 md:px-8 pt-2 md:pt-0 pb-16 md:pb-28">
       {projects.map((project) => (
         <Link
           key={project.slug}

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/Footer";
@@ -16,6 +16,12 @@ export const metadata: Metadata = {
   title: "so.c_architects",
   description:
     "so.c_architects — architecture, interior design, urban design, public art. Founded by Jungho So in Seoul.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export function generateStaticParams() {

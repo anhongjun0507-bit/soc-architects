@@ -11,7 +11,7 @@ export default async function ProfilePage({
   const dict = await getDictionary(lang);
 
   return (
-    <section className="max-w-[1040px] mx-auto px-5 md:px-8 pt-4 pb-20 md:pb-28 text-[14px] leading-relaxed text-zinc-800">
+    <section className="max-w-[1040px] mx-auto px-5 md:px-8 pt-6 md:pt-4 pb-16 md:pb-28 text-[14px] leading-relaxed text-zinc-800">
       <div className="max-w-[680px] space-y-14 md:space-y-16">
         <div>
           <h2 className="text-[11px] tracking-[0.25em] uppercase text-zinc-500 mb-4">
