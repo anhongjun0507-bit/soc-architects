@@ -96,7 +96,7 @@ function RegularCard({
   return (
     <Link href={`/${lang}/projects/${project.slug}`} className="block">
       <ProjectCaption project={project} lang={lang} className="mb-3 md:mb-4" />
-      <div className="bg-zinc-100 overflow-hidden aspect-[3/4]">
+      <div className="bg-zinc-100 overflow-hidden aspect-square">
         {project.cover ? (
           <Image
             src={project.cover.src}
@@ -135,7 +135,7 @@ function FeatureCard({
       className="block w-full px-6"
     >
       <ProjectCaption project={project} lang={lang} className="mb-3 md:mb-4" />
-      <div className="relative bg-zinc-100 overflow-hidden w-full aspect-[5/2] max-h-[70vh]">
+      <div className="relative bg-zinc-100 overflow-hidden w-full aspect-[2/1] max-h-[80vh]">
         {project.cover ? (
           <Image
             src={project.cover.src}
