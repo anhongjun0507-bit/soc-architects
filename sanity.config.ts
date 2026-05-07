@@ -26,6 +26,15 @@ export default defineConfig({
                   .defaultOrdering([{ field: "order", direction: "asc" }]),
               ),
             S.listItem()
+              .title("소식 (News)")
+              .child(
+                S.documentTypeList("news")
+                  .title("소식")
+                  .defaultOrdering([
+                    { field: "publishedAt", direction: "desc" },
+                  ]),
+              ),
+            S.listItem()
               .title("사무소 정보")
               .child(
                 S.editor()
