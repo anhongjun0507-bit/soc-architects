@@ -34,7 +34,7 @@ export function ProjectGrid({
 }) {
   const segments = segmentProjects(projects);
   return (
-    <div className="flex flex-col gap-y-24 md:gap-y-28 pt-2 pb-20 md:pb-32">
+    <div className="flex flex-col gap-y-16 md:gap-y-20 pt-2 pb-20 md:pb-32">
       {segments.map((seg, i) =>
         seg.kind === "feature" ? (
           <FeatureCard
@@ -135,7 +135,7 @@ function FeatureCard({
       className="block w-full px-6"
     >
       <ProjectCaption project={project} lang={lang} className="mb-3 md:mb-4" />
-      <div className="relative bg-zinc-100 overflow-hidden w-full aspect-[21/9]">
+      <div className="relative bg-zinc-100 overflow-hidden w-full aspect-[5/2] max-h-[70vh]">
         {project.cover ? (
           <Image
             src={project.cover.src}
