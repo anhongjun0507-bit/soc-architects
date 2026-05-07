@@ -46,7 +46,7 @@ export function ProjectGrid({
         ) : (
           <div
             key={`r-${i}`}
-            className="grid grid-cols-1 md:grid-cols-3 gap-x-1 gap-y-20 md:gap-y-24 px-6 w-full"
+            className="grid grid-cols-1 md:grid-cols-3 gap-x-6 md:gap-x-8 gap-y-20 md:gap-y-24 px-6 w-full"
           >
             {seg.items.map(({ project, index }) => (
               <RegularCard
@@ -130,19 +130,18 @@ function FeatureCard({
   priority: boolean;
 }) {
   return (
-    <Link href={`/${lang}/projects/${project.slug}`} className="block w-full">
-      <ProjectCaption
-        project={project}
-        lang={lang}
-        className="px-6 mb-3 md:mb-4"
-      />
-      <div className="relative bg-zinc-100 overflow-hidden w-full h-[80vh] max-h-[80vh]">
+    <Link
+      href={`/${lang}/projects/${project.slug}`}
+      className="block w-full px-6"
+    >
+      <ProjectCaption project={project} lang={lang} className="mb-3 md:mb-4" />
+      <div className="relative bg-zinc-100 overflow-hidden w-full aspect-[21/9]">
         {project.cover ? (
           <Image
             src={project.cover.src}
             alt={project.title[lang]}
             fill
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw, calc(100vw - 48px)"
             quality={90}
             priority={priority}
             className="object-cover"
