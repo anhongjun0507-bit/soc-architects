@@ -34,26 +34,26 @@ export function ProjectGrid({
 }) {
   const segments = segmentProjects(projects);
   return (
-    <div className="flex flex-col gap-y-12 md:gap-y-16 pt-2 pb-16 md:pb-28">
+    <div className="flex flex-col gap-y-24 md:gap-y-28 pt-2 pb-20 md:pb-32">
       {segments.map((seg, i) =>
         seg.kind === "feature" ? (
           <FeatureCard
             key={`f-${seg.item.project.slug}`}
             project={seg.item.project}
             lang={lang}
-            preload={seg.item.index < 4}
+            priority={seg.item.index < 4}
           />
         ) : (
           <div
             key={`r-${i}`}
-            className="grid grid-cols-1 md:grid-cols-3 gap-x-5 md:gap-x-6 gap-y-12 md:gap-y-16 px-5 md:px-10 w-full"
+            className="grid grid-cols-1 md:grid-cols-3 gap-x-1 gap-y-20 md:gap-y-24 px-6 w-full"
           >
             {seg.items.map(({ project, index }) => (
               <RegularCard
                 key={project.slug}
                 project={project}
                 lang={lang}
-                preload={index < 4}
+                priority={index < 4}
               />
             ))}
           </div>
@@ -73,14 +73,13 @@ function ProjectCaption({
   className?: string;
 }) {
   return (
-    <div
-      className={`flex items-baseline gap-2 text-[13px] tracking-[0.05em] leading-relaxed ${className}`}
-    >
-      <span className="text-zinc-900">{project.title[lang]}</span>
-      <span className="text-zinc-300" aria-hidden>
-        ·
-      </span>
-      <span className="text-zinc-500">{project.location[lang]}</span>
+    <div className={`leading-snug ${className}`}>
+      <div className="text-[14px] md:text-[15px] tracking-[0.04em] text-zinc-900">
+        {project.title[lang]}
+      </div>
+      <div className="text-[12px] tracking-[0.04em] text-zinc-500 mt-1">
+        {project.location[lang]}
+      </div>
     </div>
   );
 }
@@ -88,29 +87,25 @@ function ProjectCaption({
 function RegularCard({
   project,
   lang,
-  preload,
+  priority,
 }: {
   project: Project;
   lang: Locale;
-  preload: boolean;
+  priority: boolean;
 }) {
   return (
     <Link href={`/${lang}/projects/${project.slug}`} className="block">
-      <ProjectCaption
-        project={project}
-        lang={lang}
-        className="mb-3 md:mb-4"
-      />
-      <div className="bg-zinc-100 overflow-hidden aspect-[3/2]">
+      <ProjectCaption project={project} lang={lang} className="mb-3 md:mb-4" />
+      <div className="bg-zinc-100 overflow-hidden aspect-[3/4]">
         {project.cover ? (
           <Image
             src={project.cover.src}
             alt={project.title[lang]}
             width={project.cover.width}
             height={project.cover.height}
-            sizes="(max-width: 768px) 100vw, 380px"
+            sizes="(max-width: 768px) 100vw, 33vw"
             quality={90}
-            preload={preload}
+            priority={priority}
             className="w-full h-full object-cover block"
           />
         ) : (
@@ -128,23 +123,20 @@ function RegularCard({
 function FeatureCard({
   project,
   lang,
-  preload,
+  priority,
 }: {
   project: Project;
   lang: Locale;
-  preload: boolean;
+  priority: boolean;
 }) {
   return (
-    <Link
-      href={`/${lang}/projects/${project.slug}`}
-      className="block w-full"
-    >
+    <Link href={`/${lang}/projects/${project.slug}`} className="block w-full">
       <ProjectCaption
         project={project}
         lang={lang}
-        className="px-5 md:px-10 mb-3 md:mb-4"
+        className="px-6 mb-3 md:mb-4"
       />
-      <div className="relative bg-zinc-100 overflow-hidden w-full h-[70svh] md:h-[calc(100svh-100px)]">
+      <div className="relative bg-zinc-100 overflow-hidden w-full h-[80vh] max-h-[80vh]">
         {project.cover ? (
           <Image
             src={project.cover.src}
@@ -152,7 +144,7 @@ function FeatureCard({
             fill
             sizes="100vw"
             quality={90}
-            priority={preload}
+            priority={priority}
             className="object-cover"
           />
         ) : (
