@@ -96,20 +96,19 @@ function RegularCard({
   return (
     <Link href={`/${lang}/projects/${project.slug}`} className="block">
       <ProjectCaption project={project} lang={lang} className="mb-3 md:mb-4" />
-      <div className="bg-zinc-100 overflow-hidden aspect-square">
+      <div className="relative bg-zinc-100 overflow-hidden aspect-square">
         {project.cover ? (
           <Image
             src={project.cover.src}
             alt={project.title[lang]}
-            width={project.cover.width}
-            height={project.cover.height}
+            fill
             sizes="(max-width: 768px) 100vw, 33vw"
             quality={90}
             priority={priority}
-            className="w-full h-full object-cover block"
+            className="object-cover"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center justify-center">
             <span className="text-[11px] tracking-[0.25em] uppercase text-zinc-300">
               coming soon
             </span>
