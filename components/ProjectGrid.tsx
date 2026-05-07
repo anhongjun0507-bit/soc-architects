@@ -74,10 +74,10 @@ function ProjectCaption({
 }) {
   return (
     <div className={`leading-snug ${className}`}>
-      <div className="text-[14px] md:text-[15px] tracking-[0.04em] text-zinc-900">
+      <div className="text-[16px] md:text-[18px] tracking-[0.04em] text-zinc-900">
         {project.title[lang]}
       </div>
-      <div className="text-[12px] tracking-[0.04em] text-zinc-500 mt-1">
+      <div className="text-[14px] md:text-[15px] tracking-[0.04em] text-zinc-500 mt-1">
         {project.location[lang]}
       </div>
     </div>

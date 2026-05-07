@@ -14,12 +14,12 @@ export function CompactTopBar({
     <header className="hidden md:flex items-center justify-between px-6 lg:px-10 pt-5 pb-4">
       <Link
         href={`/${lang}`}
-        className="text-[14px] tracking-[0.4em] lowercase font-light hover:opacity-70 transition-opacity"
+        className="text-[16px] tracking-[0.4em] lowercase font-light hover:opacity-70 transition-opacity"
       >
         so.c_architects
       </Link>
 
-      <nav className="flex items-center gap-5 text-[13px] lowercase text-zinc-700">
+      <nav className="flex items-center gap-5 text-[15px] lowercase text-zinc-700">
         <Link
           href={`/${lang}`}
           className="hover:text-black transition-colors"
