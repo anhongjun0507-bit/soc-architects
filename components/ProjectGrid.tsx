@@ -130,18 +130,19 @@ function FeatureCard({
   priority: boolean;
 }) {
   return (
-    <Link
-      href={`/${lang}/projects/${project.slug}`}
-      className="block w-full px-6"
-    >
-      <ProjectCaption project={project} lang={lang} className="mb-3 md:mb-4" />
+    <Link href={`/${lang}/projects/${project.slug}`} className="block w-full">
+      <ProjectCaption
+        project={project}
+        lang={lang}
+        className="px-6 mb-3 md:mb-4"
+      />
       <div className="relative bg-zinc-100 overflow-hidden w-full h-[80vh] max-h-[80vh]">
         {project.cover ? (
           <Image
             src={project.cover.src}
             alt={project.title[lang]}
             fill
-            sizes="(max-width: 768px) 100vw, calc(100vw - 48px)"
+            sizes="100vw"
             quality={90}
             priority={priority}
             className="object-cover"
