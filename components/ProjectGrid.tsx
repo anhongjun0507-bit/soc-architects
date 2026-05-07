@@ -46,7 +46,7 @@ export function ProjectGrid({
         ) : (
           <div
             key={`r-${i}`}
-            className="grid grid-cols-1 md:grid-cols-3 gap-x-4 md:gap-x-5 gap-y-12 md:gap-y-16 max-w-[1240px] mx-auto px-5 md:px-10 w-full"
+            className="grid grid-cols-1 md:grid-cols-3 gap-x-5 md:gap-x-6 gap-y-12 md:gap-y-16 px-5 md:px-10 w-full"
           >
             {seg.items.map(({ project, index }) => (
               <RegularCard
