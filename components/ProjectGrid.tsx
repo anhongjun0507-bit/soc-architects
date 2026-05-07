@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n-config";
-import type { Project } from "@/data/projects";
+import type { Project } from "@/sanity/lib/types";
 
 type Indexed = { project: Project; index: number };
 type Segment =
@@ -11,7 +11,7 @@ type Segment =
 function segmentProjects(projects: Project[]): Segment[] {
   const segments: Segment[] = [];
   projects.forEach((project, index) => {
-    if (project.priority === "feature") {
+    if (project.featured) {
       segments.push({ kind: "feature", item: { project, index } });
       return;
     }
@@ -103,7 +103,7 @@ function RegularCard({
             alt={project.title[lang]}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
-            quality={90}
+            quality={95}
             priority={priority}
             className="object-cover"
           />
@@ -141,7 +141,7 @@ function FeatureCard({
             alt={project.title[lang]}
             fill
             sizes="(max-width: 768px) 100vw, calc(100vw - 48px)"
-            quality={90}
+            quality={95}
             priority={priority}
             className="object-cover"
           />

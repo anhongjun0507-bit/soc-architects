@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { ProjectImage } from "@/data/projects";
+import type { ProjectImage } from "@/sanity/lib/types";
 
 const SWIPE_THRESHOLD = 50;
 
@@ -86,7 +86,7 @@ export function ProjectGallery({
             width={current.width}
             height={current.height}
             sizes="(max-width: 1040px) 100vw, 1040px"
-            quality={90}
+            quality={95}
             className="w-full h-auto block pointer-events-none"
             preload
           />

@@ -1,17 +1,16 @@
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
-import { schemaTypes } from "./sanity/schemas";
+import { schemaTypes } from "./sanity/schemaTypes";
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!;
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
+const SINGLETONS = ["profile", "siteSettings"] as const;
 
 export default defineConfig({
   name: "soc-architects",
-  title: "so.c_architects CMS",
+  title: "SOC Architects",
   basePath: "/studio",
-  projectId,
-  dataset,
+  projectId: "y70z7978",
+  dataset: "production",
   plugins: [
     structureTool({
       structure: (S) =>
@@ -19,32 +18,48 @@ export default defineConfig({
           .title("Content")
           .items([
             S.listItem()
-              .title("프로젝트")
+              .title("Projects")
               .child(
                 S.documentTypeList("project")
-                  .title("프로젝트")
+                  .title("Projects")
                   .defaultOrdering([{ field: "order", direction: "asc" }]),
               ),
             S.listItem()
-              .title("소식 (News)")
+              .title("News")
               .child(
                 S.documentTypeList("news")
-                  .title("소식")
-                  .defaultOrdering([
-                    { field: "publishedAt", direction: "desc" },
-                  ]),
+                  .title("News")
+                  .defaultOrdering([{ field: "date", direction: "desc" }]),
+              ),
+            S.divider(),
+            S.listItem()
+              .title("Profile")
+              .child(
+                S.editor().id("profile").schemaType("profile").documentId("profile"),
               ),
             S.listItem()
-              .title("사무소 정보")
+              .title("Site settings")
               .child(
                 S.editor()
-                  .id("office-singleton")
-                  .schemaType("office")
-                  .documentId("office-singleton"),
+                  .id("siteSettings")
+                  .schemaType("siteSettings")
+                  .documentId("siteSettings"),
               ),
           ]),
     }),
     visionTool(),
   ],
-  schema: { types: schemaTypes },
+  schema: {
+    types: schemaTypes,
+    templates: (templates) =>
+      templates.filter(
+        ({ schemaType }) => !SINGLETONS.includes(schemaType as (typeof SINGLETONS)[number]),
+      ),
+  },
+  document: {
+    actions: (input, { schemaType }) =>
+      SINGLETONS.includes(schemaType as (typeof SINGLETONS)[number])
+        ? input.filter(({ action }) => action !== "delete" && action !== "duplicate")
+        : input,
+  },
 });

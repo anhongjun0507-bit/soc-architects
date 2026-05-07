@@ -3,13 +3,17 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { hasLocale, locales } from "@/lib/i18n-config";
 import { getDictionary } from "@/lib/dictionaries";
-import { projects } from "@/data/projects";
 import { ProjectGallery } from "@/components/ProjectGallery";
+import {
+  getProjects,
+  getProjectBySlug,
+  getProjectSlugs,
+} from "@/sanity/lib/fetchers";
+import { ParagraphPortableText } from "@/sanity/lib/portable-text";
 
-export function generateStaticParams() {
-  return locales.flatMap((lang) =>
-    projects.map((p) => ({ lang, slug: p.slug })),
-  );
+export async function generateStaticParams() {
+  const slugs = await getProjectSlugs();
+  return locales.flatMap((lang) => slugs.map((slug) => ({ lang, slug })));
 }
 
 export async function generateMetadata({
@@ -17,7 +21,7 @@ export async function generateMetadata({
 }: PageProps<"/[lang]/projects/[slug]">): Promise<Metadata> {
   const { lang, slug } = await params;
   if (!hasLocale(lang)) return {};
-  const project = projects.find((p) => p.slug === slug);
+  const project = await getProjectBySlug(slug);
   if (!project) return {};
   const title = `${project.title[lang]} · so.c_architects`;
   return {
@@ -36,11 +40,13 @@ export default async function ProjectDetailPage({
   const { lang, slug } = await params;
   if (!hasLocale(lang)) notFound();
 
+  const projects = await getProjects();
   const idx = projects.findIndex((p) => p.slug === slug);
   if (idx === -1) notFound();
   const project = projects[idx];
   const prevProject = idx > 0 ? projects[idx - 1] : null;
-  const nextProject = idx < projects.length - 1 ? projects[idx + 1] : null;
+  const nextProject =
+    idx < projects.length - 1 ? projects[idx + 1] : null;
 
   const dict = await getDictionary(lang);
 
@@ -49,9 +55,12 @@ export default async function ProjectDetailPage({
     { label: "year", value: String(project.year) },
   ];
   if (project.area) meta.push({ label: "area", value: project.area });
-  if (project.status) meta.push({ label: "status", value: project.status[lang] });
+  if (project.status)
+    meta.push({ label: "status", value: project.status[lang] });
   if (project.collaborator)
     meta.push({ label: "collaborator", value: project.collaborator });
+
+  const descriptionBlocks = project.description?.[lang];
 
   return (
     <article className="max-w-[1040px] mx-auto px-5 md:px-8 pt-2 md:pt-3 pb-24 md:pb-32 text-zinc-800">
@@ -70,11 +79,9 @@ export default async function ProjectDetailPage({
           <h1 className="text-[24px] md:text-[28px] font-light tracking-[0.01em] mb-6 md:mb-8">
             {project.title[lang]}
           </h1>
-          {project.description && (
+          {descriptionBlocks && descriptionBlocks.length > 0 && (
             <div className="space-y-4 text-[16px] leading-[1.85] text-zinc-700">
-              {project.description[lang].map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
+              <ParagraphPortableText value={descriptionBlocks} />
             </div>
           )}
         </div>

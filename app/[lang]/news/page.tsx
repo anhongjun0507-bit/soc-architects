@@ -3,43 +3,15 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { hasLocale, type Locale } from "@/lib/i18n-config";
 import { getDictionary } from "@/lib/dictionaries";
-import { sanityClient, urlFor } from "@/lib/sanity";
+import { getNewsPosts } from "@/sanity/lib/fetchers";
+import { ParagraphPortableText } from "@/sanity/lib/portable-text";
+import type { LocalizedPartial, LocalizedBlocks } from "@/sanity/lib/types";
 
 export const metadata: Metadata = {
   title: "News · so.c_architects",
 };
 
-type NewsImage = {
-  asset?: { _ref: string };
-  alt?: string | null;
-};
-
-type NewsPost = {
-  _id: string;
-  publishedAt: string;
-  title: { ko?: string; en?: string };
-  body?: { ko?: string; en?: string } | null;
-  cover?: NewsImage | null;
-  images?: NewsImage[] | null;
-  externalLink?: string | null;
-};
-
 export const revalidate = 60;
-
-async function getNews(): Promise<NewsPost[]> {
-  if (!sanityClient) return [];
-  return sanityClient.fetch<NewsPost[]>(
-    `*[_type == "news"] | order(publishedAt desc) {
-      _id,
-      publishedAt,
-      title,
-      body,
-      cover,
-      images,
-      externalLink
-    }`,
-  );
-}
 
 function formatDate(iso: string, lang: Locale) {
   const d = new Date(iso);
@@ -54,12 +26,20 @@ function formatDate(iso: string, lang: Locale) {
   });
 }
 
-function pickLocaleText<T extends string | undefined>(
-  obj: { ko?: T; en?: T } | null | undefined,
+function pickLocaleText(
+  obj: LocalizedPartial | null | undefined,
   lang: Locale,
-): T | undefined {
+): string | undefined {
   if (!obj) return undefined;
-  return (obj[lang] || obj.ko || obj.en) as T | undefined;
+  return obj[lang] || obj.ko || obj.en;
+}
+
+function pickLocaleBlocks(
+  obj: LocalizedBlocks | null | undefined,
+  lang: Locale,
+) {
+  if (!obj) return undefined;
+  return obj[lang] || obj.ko || obj.en;
 }
 
 export default async function NewsPage({
@@ -68,7 +48,7 @@ export default async function NewsPage({
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
   const dict = await getDictionary(lang);
-  const posts = await getNews();
+  const posts = await getNewsPosts();
 
   return (
     <section className="px-6 pt-2 pb-20 md:pb-28">
@@ -80,55 +60,64 @@ export default async function NewsPage({
 
       {posts.length === 0 ? (
         <div className="max-w-[680px] py-20 text-zinc-400 text-[14px]">
-          {lang === "ko"
-            ? "아직 등록된 소식이 없습니다."
-            : "No news yet."}
+          {lang === "ko" ? "아직 등록된 소식이 없습니다." : "No news yet."}
         </div>
       ) : (
         <ul className="flex flex-col gap-y-20 md:gap-y-28 max-w-[1100px]">
           {posts.map((post) => {
-            const title = pickLocaleText(post.title, lang) ?? "";
-            const body = pickLocaleText(post.body ?? undefined, lang);
+            const title = post.title?.[lang] ?? post.title?.ko ?? "";
+            const excerpt = pickLocaleText(post.excerpt, lang);
+            const bodyBlocks = pickLocaleBlocks(post.body, lang);
+            const coverDims = post.cover?.asset.metadata?.dimensions;
+            const coverUrl = post.cover?.asset.url;
             return (
               <li key={post._id} className="flex flex-col gap-5 md:gap-6">
                 <div className="text-[12px] tracking-[0.2em] uppercase text-zinc-400">
-                  {formatDate(post.publishedAt, lang)}
+                  {formatDate(post.date, lang)}
                 </div>
                 <h2 className="text-[20px] md:text-[24px] leading-snug tracking-[0.02em] text-zinc-900">
                   {title}
                 </h2>
 
-                {post.cover?.asset && (
+                {coverUrl && (
                   <div className="relative bg-zinc-100 overflow-hidden aspect-[3/2] w-full">
                     <Image
-                      src={urlFor(post.cover).width(1600).quality(90).url()}
-                      alt={post.cover.alt ?? title}
+                      src={coverUrl}
+                      alt={post.cover?.alt ?? title}
                       fill
                       sizes="(max-width: 768px) 100vw, 1100px"
+                      quality={95}
                       className="object-cover"
                     />
                   </div>
                 )}
 
-                {body && (
+                {excerpt && (
                   <div className="text-[15px] md:text-[16px] leading-[1.85] text-zinc-700 whitespace-pre-line max-w-[760px]">
-                    {body}
+                    {excerpt}
+                  </div>
+                )}
+
+                {bodyBlocks && bodyBlocks.length > 0 && (
+                  <div className="text-[15px] md:text-[16px] leading-[1.85] text-zinc-700 max-w-[760px] space-y-3">
+                    <ParagraphPortableText value={bodyBlocks} />
                   </div>
                 )}
 
                 {post.images && post.images.length > 0 && (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                     {post.images.map((img, i) =>
-                      img.asset ? (
+                      img?.asset?.url ? (
                         <div
                           key={i}
                           className="relative bg-zinc-100 overflow-hidden aspect-[3/2]"
                         >
                           <Image
-                            src={urlFor(img).width(1200).quality(85).url()}
+                            src={img.asset.url}
                             alt={img.alt ?? ""}
                             fill
                             sizes="(max-width: 768px) 100vw, 540px"
+                            quality={95}
                             className="object-cover"
                           />
                         </div>
