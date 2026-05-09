@@ -43,7 +43,7 @@ export function MobileMenu({
       {open && (
         <div className="fixed inset-0 z-50 bg-white flex flex-col px-5 pt-5 pb-[max(env(safe-area-inset-bottom),1.5rem)] md:hidden">
           <div className="flex items-center justify-between">
-            <span className="text-[16px] font-light tracking-[0.3em]">
+            <span className="text-[15px] font-light tracking-[0.3em]">
               so.c_architects
             </span>
             <button
