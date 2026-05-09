@@ -33,7 +33,7 @@ export const siteSettings = defineType({
         ],
         layout: "radio",
       },
-      initialValue: "ko",
+      initialValue: "en",
     }),
   ],
   preview: {

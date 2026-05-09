@@ -10,7 +10,7 @@ export default function NotFound() {
         Page not found
       </h1>
       <Link
-        href="/ko"
+        href="/en"
         className="text-[13px] tracking-[0.15em] lowercase text-zinc-900 hover:text-zinc-500 transition-colors border-b border-zinc-300 pb-0.5"
       >
         ← projects
