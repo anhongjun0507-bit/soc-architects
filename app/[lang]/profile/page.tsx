@@ -35,7 +35,6 @@ export default async function ProfilePage({
             {dict.profile.office}
           </h2>
           <p className="text-[16px] mb-1">{officeName}</p>
-          <p className="mb-1">so.c_architects</p>
           {founded && <p className="text-zinc-500">est. {founded}</p>}
           <p className="text-zinc-500">{fields}</p>
           <p className="text-zinc-500">{address}</p>
