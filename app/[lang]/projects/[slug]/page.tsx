@@ -76,17 +76,17 @@ export default async function ProjectDetailPage({
 
       <div className="grid md:grid-cols-[1fr_280px] gap-10 md:gap-16 max-w-[1040px]">
         <div className="max-w-[680px]">
-          <h1 className="text-[24px] md:text-[28px] font-light tracking-[0.01em] mb-6 md:mb-8">
+          <h1 className="text-[21px] font-bold tracking-[0.01em] mb-6 md:mb-8">
             {project.title[lang]}
           </h1>
           {descriptionBlocks && descriptionBlocks.length > 0 && (
-            <div className="space-y-4 text-[16px] leading-[1.85] text-zinc-700">
+            <div className="space-y-4 text-[13px] leading-[1.85] text-zinc-700">
               <ParagraphPortableText value={descriptionBlocks} />
             </div>
           )}
         </div>
 
-        <dl className="space-y-4 text-[14px] leading-relaxed self-start">
+        <dl className="space-y-4 text-[13px] leading-relaxed self-start">
           {meta.map((m) => (
             <div key={m.label}>
               <dt className="text-[11px] tracking-[0.25em] uppercase text-zinc-400 mb-1">
