@@ -22,7 +22,8 @@ export const projectsQuery = groq`
     area,
     collaborator,
     mainImage ${imageMeta},
-    gallery[] ${imageMeta}
+    gallery[] ${imageMeta},
+    description
   }
 `;
 
