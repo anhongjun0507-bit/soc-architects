@@ -33,12 +33,6 @@ export function CompactTopBar({
           {dict.nav.news}
         </Link>
         <Link
-          href={`/${lang}/publish`}
-          className="hover:text-black transition-colors"
-        >
-          {dict.nav.publish}
-        </Link>
-        <Link
           href={`/${lang}/profile`}
           className="hover:text-black transition-colors"
         >

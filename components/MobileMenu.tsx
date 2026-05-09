@@ -25,7 +25,6 @@ export function MobileMenu({
   const items = [
     { href: "", label: dict.nav.projects },
     { href: "/news", label: dict.nav.news },
-    { href: "/publish", label: dict.nav.publish },
     { href: "/profile", label: dict.nav.profile },
     { href: "/contact", label: dict.nav.contact },
   ];

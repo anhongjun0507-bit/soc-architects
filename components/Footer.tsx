@@ -2,10 +2,8 @@ import type { Locale } from "@/lib/i18n-config";
 import { getProfile } from "@/sanity/lib/fetchers";
 
 export async function Footer({
-  copyright,
   lang,
 }: {
-  copyright: string;
   lang: Locale;
 }) {
   const profile = await getProfile();
@@ -52,7 +50,6 @@ export async function Footer({
             </a>
           </p>
         </div>
-        <p className="text-zinc-400">{copyright}</p>
       </div>
     </footer>
   );

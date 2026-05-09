@@ -2,7 +2,6 @@
   "nav": {
     "home": "HOME",
     "news": "news",
-    "publish": "publish",
     "projects": "projects",
     "profile": "profile",
     "recruit": "recruit",
@@ -11,9 +10,6 @@
   "lang": {
     "ko": "KO",
     "en": "EN"
-  },
-  "footer": {
-    "copyright": "©so.c_architects"
   },
   "site": {
     "tagline": "architecture ｜ interior ｜ urban ｜ public art",
@@ -25,7 +21,6 @@
     "profile": "Profile",
     "contact": "Contact",
     "news": "News",
-    "publish": "Publish",
     "recruit": "Recruit",
     "comingSoon": "Coming soon."
   },

@@ -53,7 +53,7 @@ export default async function LangLayout({
           <MobileHeader lang={lang} dict={dict} />
           <CompactTopBar lang={lang} dict={dict} />
           <main className="flex-1">{children}</main>
-          <Footer copyright={dict.footer.copyright} lang={lang} />
+          <Footer lang={lang} />
         </div>
       </body>
     </html>
