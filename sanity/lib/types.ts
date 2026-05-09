@@ -60,17 +60,36 @@ export type Project = {
   description?: LocalizedBlocks;
 };
 
+export type NewsCategory =
+  | "practice"
+  | "education"
+  | "project"
+  | "talk"
+  | "commission";
+
 export type SanityNewsPost = {
   _id: string;
   title: Localized;
   slug: string;
   date: string;
-  category: "practice" | "education" | "project" | "talk" | "commission";
+  category: NewsCategory;
   excerpt?: LocalizedPartial | null;
   body?: LocalizedBlocks | null;
   cover?: SanityImageMeta | null;
   images?: SanityImageMeta[] | null;
   externalLink?: string | null;
+};
+
+export type NewsPost = {
+  slug: string;
+  title: Localized;
+  date: string;
+  category: NewsCategory;
+  excerpt?: LocalizedPartial;
+  body?: LocalizedBlocks;
+  cover?: ProjectImage;
+  images: ProjectImage[];
+  externalLink?: string;
 };
 
 export type SanityProfile = {

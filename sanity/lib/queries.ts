@@ -67,6 +67,27 @@ export const newsListQuery = groq`
   }
 `;
 
+export const newsBySlugQuery = groq`
+  *[_type == "news" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    date,
+    category,
+    excerpt,
+    body,
+    cover ${imageMeta},
+    images[] ${imageMeta},
+    externalLink
+  }
+`;
+
+export const newsSlugsQuery = groq`
+  *[_type == "news" && defined(slug.current)] | order(date desc) {
+    "slug": slug.current
+  }
+`;
+
 export const profileQuery = groq`
   *[_type == "profile"][0] {
     bio,
