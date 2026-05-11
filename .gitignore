@@ -42,14 +42,32 @@ yarn-error.log*
 next-env.d.ts
 
 # claude code local
-.claude/settings.local.json
+.claude/
 
 # local reference / inspiration screenshots (not committed)
 /화면 캡처*.png
 /Screenshot*.png
 /screenshots/
 /1.png
+/KakaoTalk_*.jpg
+/KakaoTalk_*.png
+/preview.webp
 
 # raw project source files (large, processed copies live in public/projects)
 /proejct/
 /resize-tmp.mjs
+
+# editor / OS
+.idea/
+.vscode/
+Thumbs.db
+
+# logs
+*.log
+
+# python (if any helper scripts)
+__pycache__/
+*.pyc
+
+# devcontainer local state
+.devcontainer/.bash_history
