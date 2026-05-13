@@ -134,7 +134,7 @@ function FeatureCard({
       className="block w-full px-5 md:px-6 lg:px-10"
     >
       <ProjectCaption project={project} lang={lang} className="mb-3 md:mb-4" />
-      <div className="relative bg-zinc-100 overflow-hidden w-full aspect-[2/1] max-h-[80vh]">
+      <div className="relative bg-zinc-100 overflow-hidden w-full aspect-square md:aspect-2/1 md:max-h-[80vh]">
         {project.cover ? (
           <Image
             src={project.cover.src}
